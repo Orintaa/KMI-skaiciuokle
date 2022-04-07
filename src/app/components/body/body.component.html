@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                KMI Skaičiuoklė
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="" class="form-label">Įveskite ūgį</label>
+                    <input class="form-control" type="number" id="ugis" name="ugis" [(ngModel)]="ugis">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Įveskite svorį</label>
+                    <input class="form-control" type="number" id="svoris" name="svoris" [(ngModel)]="svoris">
+                </div>
+                <button class="btn btn-success" type="button"  (click)="skaiciuoti()" [disabled]="ugis==null || svoris==null">Skaičiuoti</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header" >
+                Rezultatai
+            </div>
+            <div class="card-body">
+                <div *ngIf="kmi!=0" class="alert" [ngClass]="{'alert-success':kmi<25, 'alert-info':(kmi>=25 && kmi<30),'alert-danger':kmi>=30}">
+                    {{info}} <br>
+                    
+                    KMI: <strong  >{{ kmi }}</strong>
+                </div>
+                
+                <div *ngIf="kmi==0">
+                    Iveskite svori ir paspauskite skaičiuoti
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
