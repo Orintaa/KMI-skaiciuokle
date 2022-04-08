@@ -6,9 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./body.component.css']
 })
 export class BodyComponent implements OnInit {
-  public ugis?:number;
-  public svoris?:number;
-  public kmi:number = 0;
+  public talpa?:number;
+  public greitis?:number;
+  public laikas?:number;
+  public rez:number = 0;
   public info:string='';
 
   constructor() { }
@@ -17,16 +18,16 @@ export class BodyComponent implements OnInit {
   }
 
   public skaiciuoti(){
-    if(this.ugis!=null && this.svoris!=null){
-      this.kmi = Math.round(this.svoris / (this.ugis/100)**2);
-      if(this.kmi < 25){
-        this.info = 'Sveikiname Jusu svoris normalus.';
+    if(this.talpa!=null && this.greitis!=null && this.laikas!=null){
+      this.rez = Math.round(this.talpa / (this.greitis * this.laikas));
+      if(this.rez < 80){
+        this.info = 'Rezervuaras stabilus.';
       }
-      if(this.kmi >= 25 && this.kmi < 30){ 
-        this.info = 'Jus turetumete maitintis sveikiau.';
+      if(this.rez >= 80){ 
+        this.info = 'Rezervuaro talpa kritiskai pripildyta.';
       }
-      if(this.kmi >= 30){
-        this.info = 'jus turetumete sunerimti, KMi per didelis.'
+      if(this.rez > 100){
+        this.info = 'Rezervuaras yra perpildytas!';
        }
     }
   }
